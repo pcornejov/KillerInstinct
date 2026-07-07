@@ -1,0 +1,39 @@
+---
+interface Props {
+  videoId: string;
+  title: string;
+  thumbnailUrl?: string;
+}
+
+const { videoId, title, thumbnailUrl } = Astro.props;
+const thumb = thumbnailUrl ?? `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+---
+
+<div class="yt-facade" data-video-id={videoId} data-title={title}>
+  <button type="button" class="yt-facade__button" aria-label={`Reproducir: ${title}`}>
+    <img class="yt-facade__thumb" src={thumb} alt="" loading="lazy" />
+    <span class="yt-facade__play" aria-hidden="true"></span>
+  </button>
+  <p class="yt-facade__title">{title}</p>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.yt-facade').forEach((facade) => {
+    const button = facade.querySelector('.yt-facade__button');
+    button?.addEventListener(
+      'click',
+      () => {
+        const videoId = facade.dataset.videoId;
+        const title = facade.dataset.title ?? '';
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1`;
+        iframe.title = title;
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.className = 'yt-facade__iframe';
+        facade.replaceChildren(iframe);
+      },
+      { once: true },
+    );
+  });
+</script>

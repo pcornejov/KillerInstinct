@@ -1,0 +1,44 @@
+.home-sections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: var(--space-md);
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.home-card {
+  display: block;
+  padding: var(--space-md);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.home-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent-cold);
+  background: var(--color-bg-2);
+  box-shadow: var(--shadow-elevate), var(--glow-cold);
+}
+
+.home-card:focus-visible {
+  outline: 2px solid var(--color-accent-cold-strong);
+  outline-offset: 2px;
+}
+
+.home-card h2 {
+  margin: 0 0 var(--space-2xs);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+.home-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}

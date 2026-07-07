@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/url';
+---
+
+<BaseLayout title="Inicio">
+  <section class="hero">
+    <p class="hero__eyebrow">La guía definitiva del franchise</p>
+    <h1 class="hero__title">KILLER INSTINCT</h1>
+    <p class="hero__subtitle">
+      Juegos, personajes, mecánicas, combos y curiosidades de toda la saga
+      Killer Instinct — desde el arcade original de 1994 hasta el reboot de
+      2013.
+    </p>
+    <div class="hero__actions">
+      <a class="button button--primary" href={withBase('/games/')}>Explorar juegos</a>
+      <a class="button button--secondary" href={withBase('/characters/')}>Ver personajes</a>
+    </div>
+  </section>
+
+  <section class="home-sections">
+    <a class="home-card" href={withBase('/games/')}>
+      <h2>Juegos</h2>
+      <p>Del arcade clásico al reboot de 2013, con sus temporadas y plataformas.</p>
+    </a>
+    <a class="home-card" href={withBase('/characters/')}>
+      <h2>Personajes</h2>
+      <p>Roster completo con bios, apariciones por juego y videos de sus movidas.</p>
+    </a>
+    <a class="home-card" href={withBase('/mechanics/')}>
+      <h2>Mecánicas</h2>
+      <p>Combo Breakers, Shadow Counters, Instinct Mode, Ultras y más.</p>
+    </a>
+    <a class="home-card" href={withBase('/trivia/')}>
+      <h2>Curiosidades</h2>
+      <p>Datos de desarrollo, easter eggs, esports y anécdotas de la saga.</p>
+    </a>
+    <a class="home-card" href={withBase('/media/')}>
+      <h2>Videos</h2>
+      <p>Ultras, No Mercy y combos en video, organizados por personaje.</p>
+    </a>
+  </section>
+</BaseLayout>

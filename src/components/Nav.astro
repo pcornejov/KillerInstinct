@@ -1,0 +1,30 @@
+---
+import { withBase } from '../utils/url';
+
+const links = [
+  { href: '/', label: 'Inicio' },
+  { href: '/games/', label: 'Juegos' },
+  { href: '/characters/', label: 'Personajes' },
+  { href: '/mechanics/', label: 'Mecánicas' },
+  { href: '/trivia/', label: 'Curiosidades' },
+  { href: '/media/', label: 'Videos' },
+];
+---
+
+<header class="site-header">
+  <nav class="site-nav">
+    <a class="site-nav__brand" href={withBase('/')}>
+      <span class="site-nav__brand-mark">KI</span>
+      <span class="site-nav__brand-text">Killer Instinct Guide</span>
+    </a>
+    <ul class="site-nav__links">
+      {
+        links.map((link) => (
+          <li>
+            <a href={withBase(link.href)}>{link.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

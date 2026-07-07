@@ -1,0 +1,18 @@
+.site-footer {
+  max-width: var(--content-max-width);
+  margin: var(--space-2xl) auto 0;
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-dim);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer p + p {
+  margin-top: var(--space-2xs);
+}
