@@ -1,0 +1,211 @@
+/* Single game detail page */
+.game-detail {
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.game-detail__header {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+  margin-bottom: var(--space-xl);
+}
+
+@media (max-width: 48rem) {
+  .game-detail__header {
+    grid-template-columns: 1fr;
+  }
+}
+
+.game-detail__cover {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.game-detail__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-detail__cover-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-lg);
+  background: linear-gradient(135deg, rgba(47, 208, 240, 0.14), rgba(255, 59, 48, 0.14));
+  color: var(--color-text-dim);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.game-detail__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.game-detail__intro h1 {
+  margin: 0;
+}
+
+.game-detail__era {
+  align-self: flex-start;
+  padding: 0.2em 0.75em;
+  background: rgba(47, 208, 240, 0.12);
+  border: 1px solid rgba(47, 208, 240, 0.35);
+  border-radius: 999px;
+  color: var(--color-accent-cold);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Facts list rendered as a clean label/value grid instead of default dl stacking */
+.game-detail__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--space-sm) var(--space-md);
+  margin: 0;
+  padding: var(--space-md);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.game-detail__facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.game-detail__facts dt {
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.game-detail__facts dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.game-detail__seasons h2 {
+  margin: 0 0 var(--space-2xs);
+  font-size: 1.1rem;
+}
+
+.game-detail__seasons ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.game-detail__seasons li {
+  padding: var(--space-2xs) var(--space-sm);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent-hot);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.game-detail__source {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-md);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.game-detail__source:hover {
+  color: var(--color-accent-cold-strong);
+  border-color: var(--color-accent-cold);
+  background: rgba(47, 208, 240, 0.08);
+}
+
+/* Prose styling for the rendered Markdown body */
+.game-detail__content {
+  max-width: 42rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.game-detail__content > * + * {
+  margin-top: var(--space-md);
+}
+
+.game-detail__content h2 {
+  margin-top: var(--space-lg);
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.game-detail__content h2:first-child {
+  margin-top: 0;
+}
+
+/* "Curiosidades" (and similar) headings get a small accent treatment */
+.game-detail__content h2::before {
+  content: '// ';
+  color: var(--color-accent-hot);
+}
+
+.game-detail__content h3 {
+  margin-top: var(--space-md);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.game-detail__content p {
+  color: var(--color-text-muted);
+}
+
+.game-detail__content ul,
+.game-detail__content ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-left: var(--space-md);
+  list-style: disc;
+}
+
+.game-detail__content ol {
+  list-style: decimal;
+}
+
+.game-detail__content li {
+  color: var(--color-text-muted);
+}
+
+.game-detail__content a {
+  color: var(--color-accent-cold);
+}
+
+.game-detail__content strong {
+  color: var(--color-text);
+}

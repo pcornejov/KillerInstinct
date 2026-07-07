@@ -5,6 +5,9 @@
 @import './components/buttons.css';
 @import './components/home-cards.css';
 @import './components/youtube-facade.css';
+@import './components/section-header.css';
+@import './components/game-grid.css';
+@import './components/game-detail.css';
 
 /* Modern CSS reset */
 *,

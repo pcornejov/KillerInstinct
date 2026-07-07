@@ -1,0 +1,104 @@
+/* Grid of game cards */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+  gap: var(--space-md);
+  padding: 0 0 var(--space-2xl);
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent-cold);
+  background: var(--color-bg-2);
+  box-shadow: var(--shadow-elevate), var(--glow-cold);
+}
+
+.game-card:focus-visible {
+  outline: 2px solid var(--color-accent-cold-strong);
+  outline-offset: 2px;
+}
+
+.game-card__cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-bg-2);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.game-card__cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.game-card__cover-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-sm);
+  background: linear-gradient(135deg, rgba(47, 208, 240, 0.12), rgba(255, 59, 48, 0.12));
+  color: var(--color-text-dim);
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.04em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.game-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-md);
+}
+
+.game-card__era {
+  align-self: flex-start;
+  padding: 0.2em 0.75em;
+  background: rgba(47, 208, 240, 0.12);
+  border: 1px solid rgba(47, 208, 240, 0.35);
+  border-radius: 999px;
+  color: var(--color-accent-cold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.game-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+.game-card__meta {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Empty state */
+.empty-state {
+  padding: var(--space-2xl) var(--space-md);
+  color: var(--color-text-dim);
+  font-size: 1rem;
+  text-align: center;
+}
