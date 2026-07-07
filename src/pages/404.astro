@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../utils/url';
+---
+
+<BaseLayout title="Página no encontrada" description="La página que buscás no existe o fue movida.">
+  <section class="not-found">
+    <p class="not-found__code">404</p>
+    <h1>No Mercy... para esta URL</h1>
+    <p class="not-found__text">
+      La página que buscás no existe o fue movida a otro escenario.
+    </p>
+    <a class="button button--primary" href={withBase('/')}>Volver al inicio</a>
+  </section>
+</BaseLayout>

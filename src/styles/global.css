@@ -14,6 +14,7 @@
 @import './components/mechanic-detail.css';
 @import './components/trivia-grid.css';
 @import './components/media-gallery.css';
+@import './components/not-found.css';
 
 /* Modern CSS reset */
 *,
