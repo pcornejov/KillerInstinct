@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import GameCard from '../../components/GameCard.astro';
+
+const games = (await getCollection('games')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout title="Juegos" description="Todos los juegos de la saga Killer Instinct, del arcade clásico al reboot de 2013.">
+  <section class="section-header">
+    <p class="section-header__eyebrow">La saga completa</p>
+    <h1>Juegos</h1>
+    <p class="section-header__subtitle">
+      Desde el arcade original de 1994 hasta el reboot de 2013, recorré toda la
+      historia de Killer Instinct.
+    </p>
+  </section>
+
+  {
+    games.length > 0 ? (
+      <div class="game-grid">
+        {games.map((game) => (
+          <GameCard game={game} />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">Todavía no hay juegos cargados.</p>
+    )
+  }
+</BaseLayout>

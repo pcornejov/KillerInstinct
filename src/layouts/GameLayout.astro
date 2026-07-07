@@ -1,0 +1,82 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  game: CollectionEntry<'games'>;
+}
+
+const { game } = Astro.props;
+const { title, shortName, releaseYear, platforms, developer, publisher, era, seasons, wikipediaUrl, coverImage } =
+  game.data;
+
+const eraLabels: Record<string, string> = {
+  'arcade-classic': 'Arcade clásico',
+  n64: 'Nintendo 64',
+  'reboot-2013': 'Reboot 2013',
+  mobile: 'Móvil',
+};
+---
+
+<BaseLayout title={title} description={`${title} (${releaseYear}) — ${platforms.join(', ')}`}>
+  <article class="game-detail">
+    <header class="game-detail__header">
+      <div class="game-detail__cover">
+        {
+          coverImage ? (
+            <img src={coverImage.url} alt={title} />
+          ) : (
+            <span class="game-detail__cover-placeholder">{shortName}</span>
+          )
+        }
+      </div>
+      <div class="game-detail__intro">
+        <span class="game-detail__era">{eraLabels[era] ?? era}</span>
+        <h1>{title}</h1>
+        <dl class="game-detail__facts">
+          <div>
+            <dt>Año</dt>
+            <dd>{releaseYear}</dd>
+          </div>
+          <div>
+            <dt>Plataformas</dt>
+            <dd>{platforms.join(', ')}</dd>
+          </div>
+          <div>
+            <dt>Desarrollador</dt>
+            <dd>{developer}</dd>
+          </div>
+          <div>
+            <dt>Editor</dt>
+            <dd>{publisher}</dd>
+          </div>
+        </dl>
+        {
+          seasons && seasons.length > 0 && (
+            <div class="game-detail__seasons">
+              <h2>Temporadas</h2>
+              <ul>
+                {seasons.map((season) => (
+                  <li>
+                    Temporada {season.number}: {season.title} ({season.releaseYear})
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+        {
+          wikipediaUrl && (
+            <a class="game-detail__source" href={wikipediaUrl} target="_blank" rel="noopener noreferrer">
+              Ver en Wikipedia ↗
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="game-detail__content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

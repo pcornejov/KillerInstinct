@@ -1,0 +1,35 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../utils/url';
+
+interface Props {
+  game: CollectionEntry<'games'>;
+}
+
+const { game } = Astro.props;
+const { title, shortName, releaseYear, platforms, era, coverImage } = game.data;
+
+const eraLabels: Record<string, string> = {
+  'arcade-classic': 'Arcade clásico',
+  n64: 'Nintendo 64',
+  'reboot-2013': 'Reboot 2013',
+  mobile: 'Móvil',
+};
+---
+
+<a class="game-card" href={withBase(`/games/${game.id}/`)}>
+  <div class="game-card__cover">
+    {
+      coverImage ? (
+        <img src={coverImage.url} alt={title} loading="lazy" />
+      ) : (
+        <span class="game-card__cover-placeholder">{shortName}</span>
+      )
+    }
+  </div>
+  <div class="game-card__body">
+    <span class="game-card__era">{eraLabels[era] ?? era}</span>
+    <h3 class="game-card__title">{title}</h3>
+    <p class="game-card__meta">{releaseYear} · {platforms.join(', ')}</p>
+  </div>
+</a>
