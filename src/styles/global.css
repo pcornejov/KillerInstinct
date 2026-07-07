@@ -1,0 +1,124 @@
+@import './tokens.css';
+@import './components/nav.css';
+@import './components/footer.css';
+@import './components/hero.css';
+@import './components/buttons.css';
+@import './components/home-cards.css';
+@import './components/youtube-facade.css';
+
+/* Modern CSS reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/* Base */
+html {
+  color-scheme: dark;
+}
+
+body {
+  min-height: 100svh;
+  background: var(--color-bg-0);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--color-accent-cold);
+  text-decoration-color: rgba(47, 208, 240, 0.5);
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  color: var(--color-accent-cold-strong);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent-cold);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* Layout */
+.site-main {
+  max-width: var(--content-max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
