@@ -1,0 +1,274 @@
+/* Single character detail page */
+.character-detail {
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.character-detail__header {
+  display: grid;
+  grid-template-columns: minmax(0, 20rem) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+  margin-bottom: var(--space-xl);
+}
+
+@media (max-width: 48rem) {
+  .character-detail__header {
+    grid-template-columns: 1fr;
+  }
+}
+
+.character-detail__portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  container-type: inline-size;
+}
+
+.character-detail__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.character-detail__portrait-placeholder {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: var(--space-lg);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(47, 208, 240, 0.18) 0%, transparent 50%),
+    linear-gradient(315deg, rgba(255, 59, 48, 0.18) 0%, transparent 50%),
+    var(--color-bg-2);
+  color: var(--color-text);
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5cqw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 0 0 28px rgba(47, 208, 240, 0.35);
+}
+
+.character-detail__portrait-placeholder::before,
+.character-detail__portrait-placeholder::after {
+  content: '';
+  position: absolute;
+  width: 160%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-cold), transparent);
+  opacity: 0.5;
+}
+
+.character-detail__portrait-placeholder::before {
+  top: 22%;
+  transform: rotate(-18deg);
+}
+
+.character-detail__portrait-placeholder::after {
+  bottom: 22%;
+  transform: rotate(-18deg);
+  background: linear-gradient(90deg, transparent, var(--color-accent-hot), transparent);
+}
+
+.character-detail__portrait-placeholder span {
+  position: relative;
+  z-index: 1;
+}
+
+.character-detail__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.character-detail__intro h1 {
+  margin: 0;
+}
+
+.character-detail__aliases {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+/* Facts list rendered as a clean label/value grid instead of default dl stacking */
+.character-detail__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
+  gap: var(--space-sm) var(--space-md);
+  margin: 0;
+  padding: var(--space-md);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.character-detail__facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+}
+
+.character-detail__facts dt {
+  color: var(--color-text-dim);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.character-detail__facts dd {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.character-detail__appearances h2 {
+  margin: 0 0 var(--space-2xs);
+  font-size: 1.1rem;
+}
+
+.character-detail__appearances ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.character-detail__appearances li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-sm);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent-hot);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.character-detail__note {
+  color: var(--color-text-dim);
+  font-size: 0.85rem;
+}
+
+/* Generic reusable pill tag, e.g. for boss/DLC/season markers */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15em 0.65em;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tag--boss {
+  background: rgba(255, 59, 48, 0.12);
+  border-color: rgba(255, 59, 48, 0.4);
+  color: var(--color-accent-hot-strong);
+}
+
+.tag--dlc {
+  background: rgba(47, 208, 240, 0.12);
+  border-color: rgba(47, 208, 240, 0.35);
+  color: var(--color-accent-cold);
+}
+
+.character-detail__source {
+  display: inline-flex;
+  align-self: flex-start;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-2xs) var(--space-md);
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.character-detail__source:hover {
+  color: var(--color-accent-cold-strong);
+  border-color: var(--color-accent-cold);
+  background: rgba(47, 208, 240, 0.08);
+}
+
+/* Prose styling for the rendered Markdown body */
+.character-detail__content {
+  max-width: 42rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.character-detail__content > * + * {
+  margin-top: var(--space-md);
+}
+
+.character-detail__content h2 {
+  margin-top: var(--space-lg);
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.character-detail__content h2:first-child {
+  margin-top: 0;
+}
+
+.character-detail__content h2::before {
+  content: '// ';
+  color: var(--color-accent-hot);
+}
+
+.character-detail__content h3 {
+  margin-top: var(--space-md);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.character-detail__content p {
+  color: var(--color-text-muted);
+}
+
+.character-detail__content ul,
+.character-detail__content ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-left: var(--space-md);
+  list-style: disc;
+}
+
+.character-detail__content ol {
+  list-style: decimal;
+}
+
+.character-detail__content li {
+  color: var(--color-text-muted);
+}
+
+.character-detail__content a {
+  color: var(--color-accent-cold);
+}
+
+.character-detail__content strong {
+  color: var(--color-text);
+}

@@ -8,6 +8,8 @@
 @import './components/section-header.css';
 @import './components/game-grid.css';
 @import './components/game-detail.css';
+@import './components/character-grid.css';
+@import './components/character-detail.css';
 
 /* Modern CSS reset */
 *,
