@@ -36,6 +36,7 @@
   overflow: hidden;
   background: var(--color-bg-2);
   border-bottom: 1px solid var(--color-border);
+  container-type: inline-size;
 }
 
 .game-card__cover img {
@@ -45,19 +46,52 @@
 }
 
 .game-card__cover-placeholder {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   padding: var(--space-sm);
-  background: linear-gradient(135deg, rgba(47, 208, 240, 0.12), rgba(255, 59, 48, 0.12));
-  color: var(--color-text-dim);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(47, 208, 240, 0.16) 0%, transparent 45%),
+    linear-gradient(315deg, rgba(255, 59, 48, 0.16) 0%, transparent 45%),
+    var(--color-bg-2);
+  color: var(--color-text);
   font-family: var(--font-display);
-  font-size: 1.1rem;
-  letter-spacing: 0.04em;
+  font-size: clamp(1.5rem, 6cqw, 2.25rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
   text-align: center;
   text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(47, 208, 240, 0.35);
+}
+
+.game-card__cover-placeholder::before,
+.game-card__cover-placeholder::after {
+  content: '';
+  position: absolute;
+  width: 140%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-cold), transparent);
+  opacity: 0.5;
+}
+
+.game-card__cover-placeholder::before {
+  top: 18%;
+  transform: rotate(-18deg);
+}
+
+.game-card__cover-placeholder::after {
+  bottom: 18%;
+  transform: rotate(-18deg);
+  background: linear-gradient(90deg, transparent, var(--color-accent-hot), transparent);
+}
+
+.game-card__cover-placeholder span {
+  position: relative;
+  z-index: 1;
 }
 
 .game-card__body {

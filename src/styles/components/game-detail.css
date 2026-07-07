@@ -24,6 +24,7 @@
   background: var(--color-bg-2);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
+  container-type: inline-size;
 }
 
 .game-detail__cover img {
@@ -33,19 +34,52 @@
 }
 
 .game-detail__cover-placeholder {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
   padding: var(--space-lg);
-  background: linear-gradient(135deg, rgba(47, 208, 240, 0.14), rgba(255, 59, 48, 0.14));
-  color: var(--color-text-dim);
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(47, 208, 240, 0.18) 0%, transparent 50%),
+    linear-gradient(315deg, rgba(255, 59, 48, 0.18) 0%, transparent 50%),
+    var(--color-bg-2);
+  color: var(--color-text);
   font-family: var(--font-display);
-  font-size: 1.75rem;
-  letter-spacing: 0.04em;
+  font-size: clamp(1.75rem, 5cqw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: 0.05em;
   text-align: center;
   text-transform: uppercase;
+  text-shadow: 0 0 28px rgba(47, 208, 240, 0.35);
+}
+
+.game-detail__cover-placeholder::before,
+.game-detail__cover-placeholder::after {
+  content: '';
+  position: absolute;
+  width: 160%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--color-accent-cold), transparent);
+  opacity: 0.5;
+}
+
+.game-detail__cover-placeholder::before {
+  top: 22%;
+  transform: rotate(-18deg);
+}
+
+.game-detail__cover-placeholder::after {
+  bottom: 22%;
+  transform: rotate(-18deg);
+  background: linear-gradient(90deg, transparent, var(--color-accent-hot), transparent);
+}
+
+.game-detail__cover-placeholder span {
+  position: relative;
+  z-index: 1;
 }
 
 .game-detail__intro {

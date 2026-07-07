@@ -26,7 +26,7 @@ const eraLabels: Record<string, string> = {
           coverImage ? (
             <img src={coverImage.url} alt={title} />
           ) : (
-            <span class="game-detail__cover-placeholder">{shortName}</span>
+            <span class="game-detail__cover-placeholder"><span>{shortName}</span></span>
           )
         }
       </div>
