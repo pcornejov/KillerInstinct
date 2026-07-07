@@ -1,0 +1,102 @@
+/* Grid of trivia cards */
+.trivia-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: var(--space-md);
+  padding: 0 0 var(--space-2xl);
+}
+
+.trivia-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding: var(--space-md);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.trivia-card:hover {
+  border-color: var(--color-border-strong);
+  background: var(--color-bg-2);
+}
+
+.trivia-card__header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2xs);
+}
+
+.trivia-card__category {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2em 0.75em;
+  background: rgba(47, 208, 240, 0.12);
+  border: 1px solid rgba(47, 208, 240, 0.35);
+  border-radius: 999px;
+  color: var(--color-accent-cold);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.trivia-card__tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2em 0.75em;
+  background: var(--color-bg-2);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.trivia-card__tag:hover {
+  color: var(--color-accent-cold-strong);
+  border-color: var(--color-accent-cold);
+}
+
+.trivia-card__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.01em;
+  color: var(--color-text);
+}
+
+.trivia-card__body {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.trivia-card__body > * + * {
+  margin-top: var(--space-2xs);
+}
+
+.trivia-card__body a {
+  color: var(--color-accent-cold);
+}
+
+.trivia-card__body strong {
+  color: var(--color-text);
+}
+
+.trivia-card__source {
+  align-self: flex-start;
+  margin-top: var(--space-2xs);
+  color: var(--color-text-dim);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.trivia-card__source:hover {
+  color: var(--color-accent-cold-strong);
+}

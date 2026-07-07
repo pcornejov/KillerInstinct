@@ -1,0 +1,44 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry, render } from 'astro:content';
+import { withBase } from '../utils/url';
+
+interface Props {
+  trivia: CollectionEntry<'trivia'>;
+}
+
+const { trivia } = Astro.props;
+const { title, game, character, category, source } = trivia.data;
+const { Content } = await render(trivia);
+
+const categoryLabels: Record<string, string> = {
+  development: 'Desarrollo',
+  'easter-egg': 'Easter egg',
+  esports: 'Esports',
+  'pop-culture': 'Cultura pop',
+  glitch: 'Glitch',
+  design: 'Diseño',
+};
+
+const linkedGame = game ? await getEntry(game) : undefined;
+const linkedCharacter = character ? await getEntry(character) : undefined;
+---
+
+<article class="trivia-card">
+  <header class="trivia-card__header">
+    <span class={`trivia-card__category trivia-card__category--${category}`}>
+      {categoryLabels[category] ?? category}
+    </span>
+    {linkedGame && <a class="trivia-card__tag" href={withBase(`/games/${linkedGame.id}/`)}>{linkedGame.data.title}</a>}
+    {linkedCharacter && (
+      <a class="trivia-card__tag" href={withBase(`/characters/${linkedCharacter.id}/`)}>{linkedCharacter.data.name}</a>
+    )}
+  </header>
+  <h3 class="trivia-card__title">{title}</h3>
+  <div class="trivia-card__body">
+    <Content />
+  </div>
+  <a class="trivia-card__source" href={source} target="_blank" rel="noopener noreferrer">
+    Ver fuente ↗
+  </a>
+</article>

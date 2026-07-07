@@ -1,0 +1,26 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../utils/url';
+
+interface Props {
+  mechanic: CollectionEntry<'mechanics'>;
+}
+
+const { mechanic } = Astro.props;
+const { title, shortSummary, category } = mechanic.data;
+
+const categoryLabels: Record<string, string> = {
+  offense: 'Ofensiva',
+  defense: 'Defensiva',
+  mode: 'Modo de juego',
+  presentation: 'Presentación',
+};
+---
+
+<a class="mechanic-card" href={withBase(`/mechanics/${mechanic.id}/`)}>
+  <span class={`mechanic-card__category mechanic-card__category--${category}`}>
+    {categoryLabels[category] ?? category}
+  </span>
+  <h3 class="mechanic-card__title">{title}</h3>
+  <p class="mechanic-card__summary">{shortSummary}</p>
+</a>

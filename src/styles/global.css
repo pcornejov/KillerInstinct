@@ -10,6 +10,9 @@
 @import './components/game-detail.css';
 @import './components/character-grid.css';
 @import './components/character-detail.css';
+@import './components/mechanic-grid.css';
+@import './components/mechanic-detail.css';
+@import './components/trivia-grid.css';
 
 /* Modern CSS reset */
 *,

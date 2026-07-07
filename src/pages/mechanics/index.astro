@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MechanicCard from '../../components/MechanicCard.astro';
+
+const mechanics = (await getCollection('mechanics')).sort((a, b) => {
+  if (a.data.order != null && b.data.order != null) {
+    return a.data.order - b.data.order;
+  }
+  if (a.data.order != null) return -1;
+  if (b.data.order != null) return 1;
+  return a.data.title.localeCompare(b.data.title);
+});
+---
+
+<BaseLayout title="Mecánicas" description="Las mecánicas de combate que definen a Killer Instinct: combos, contadores, modos y más.">
+  <section class="section-header">
+    <p class="section-header__eyebrow">Sistema de combate</p>
+    <h1>Mecánicas</h1>
+    <p class="section-header__subtitle">
+      Los sistemas ofensivos, defensivos y de presentación que le dan a
+      Killer Instinct su identidad como juego de peleas.
+    </p>
+  </section>
+
+  {
+    mechanics.length > 0 ? (
+      <div class="mechanic-grid">
+        {mechanics.map((mechanic) => (
+          <MechanicCard mechanic={mechanic} />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">Todavía no hay mecánicas cargadas.</p>
+    )
+  }
+</BaseLayout>

@@ -1,0 +1,159 @@
+/* Single mechanic detail page */
+.mechanic-detail {
+  padding: var(--space-lg) 0 var(--space-2xl);
+}
+
+.mechanic-detail__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  max-width: 42rem;
+  margin-bottom: var(--space-xl);
+}
+
+.mechanic-detail__header h1 {
+  margin: 0;
+}
+
+.mechanic-detail__summary {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Category badge, shared treatment with the card component */
+.mechanic-detail__category {
+  align-self: flex-start;
+  padding: 0.2em 0.75em;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.mechanic-detail__category--offense {
+  background: rgba(255, 59, 48, 0.12);
+  border: 1px solid rgba(255, 59, 48, 0.4);
+  color: var(--color-accent-hot);
+}
+
+.mechanic-detail__category--defense {
+  background: rgba(47, 208, 240, 0.12);
+  border: 1px solid rgba(47, 208, 240, 0.35);
+  color: var(--color-accent-cold);
+}
+
+.mechanic-detail__category--mode {
+  background: rgba(92, 232, 255, 0.12);
+  border: 1px solid rgba(92, 232, 255, 0.4);
+  color: var(--color-accent-cold-strong);
+}
+
+.mechanic-detail__category--presentation {
+  background: rgba(255, 106, 61, 0.12);
+  border: 1px solid rgba(255, 106, 61, 0.4);
+  color: var(--color-accent-hot-strong);
+}
+
+.mechanic-detail__games h2,
+.mechanic-detail__related h2 {
+  margin: 0 0 var(--space-2xs);
+  font-size: 1.1rem;
+}
+
+.mechanic-detail__games ul,
+.mechanic-detail__related ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+}
+
+.mechanic-detail__games li,
+.mechanic-detail__related li {
+  list-style: none;
+}
+
+.mechanic-detail__games a,
+.mechanic-detail__related a {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--space-2xs) var(--space-sm);
+  background: var(--color-bg-1);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+}
+
+.mechanic-detail__games a:hover,
+.mechanic-detail__related a:hover {
+  color: var(--color-accent-cold-strong);
+  border-color: var(--color-accent-cold);
+  background: var(--color-bg-2);
+}
+
+/* Prose styling for the rendered Markdown body */
+.mechanic-detail__content {
+  max-width: 42rem;
+  color: var(--color-text-muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.mechanic-detail__content > * + * {
+  margin-top: var(--space-md);
+}
+
+.mechanic-detail__content h2 {
+  margin-top: var(--space-lg);
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.mechanic-detail__content h2:first-child {
+  margin-top: 0;
+}
+
+.mechanic-detail__content h2::before {
+  content: '// ';
+  color: var(--color-accent-hot);
+}
+
+.mechanic-detail__content h3 {
+  margin-top: var(--space-md);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.mechanic-detail__content p {
+  color: var(--color-text-muted);
+}
+
+.mechanic-detail__content ul,
+.mechanic-detail__content ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  padding-left: var(--space-md);
+  list-style: disc;
+}
+
+.mechanic-detail__content ol {
+  list-style: decimal;
+}
+
+.mechanic-detail__content li {
+  color: var(--color-text-muted);
+}
+
+.mechanic-detail__content a {
+  color: var(--color-accent-cold);
+}
+
+.mechanic-detail__content strong {
+  color: var(--color-text);
+}

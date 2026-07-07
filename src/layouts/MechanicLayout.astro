@@ -1,0 +1,73 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { withBase } from '../utils/url';
+
+interface Props {
+  mechanic: CollectionEntry<'mechanics'>;
+}
+
+const { mechanic } = Astro.props;
+const { title, shortSummary, appliesTo, category, relatedMechanics } = mechanic.data;
+
+const categoryLabels: Record<string, string> = {
+  offense: 'Ofensiva',
+  defense: 'Defensiva',
+  mode: 'Modo de juego',
+  presentation: 'Presentación',
+};
+
+const appliesToGames = await Promise.all(appliesTo.map((game) => getEntry(game)));
+const related = relatedMechanics ? await Promise.all(relatedMechanics.map((mech) => getEntry(mech))) : [];
+---
+
+<BaseLayout title={title} description={shortSummary}>
+  <article class="mechanic-detail">
+    <header class="mechanic-detail__header">
+      <span class={`mechanic-detail__category mechanic-detail__category--${category}`}>
+        {categoryLabels[category] ?? category}
+      </span>
+      <h1>{title}</h1>
+      <p class="mechanic-detail__summary">{shortSummary}</p>
+      {
+        appliesToGames.length > 0 && (
+          <div class="mechanic-detail__games">
+            <h2>Aplica a</h2>
+            <ul>
+              {appliesToGames.map(
+                (game) =>
+                  game && (
+                    <li>
+                      <a href={withBase(`/games/${game.id}/`)}>{game.data.title}</a>
+                    </li>
+                  ),
+              )}
+            </ul>
+          </div>
+        )
+      }
+      {
+        related.length > 0 && (
+          <div class="mechanic-detail__related">
+            <h2>Mecánicas relacionadas</h2>
+            <ul>
+              {related.map(
+                (mech) =>
+                  mech && (
+                    <li>
+                      <a href={withBase(`/mechanics/${mech.id}/`)}>{mech.data.title}</a>
+                    </li>
+                  ),
+              )}
+            </ul>
+          </div>
+        )
+      }
+    </header>
+
+    <div class="mechanic-detail__content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>

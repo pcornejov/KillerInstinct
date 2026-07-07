@@ -1,0 +1,19 @@
+---
+import { getCollection, render } from 'astro:content';
+import MechanicLayout from '../../layouts/MechanicLayout.astro';
+
+export async function getStaticPaths() {
+  const mechanics = await getCollection('mechanics');
+  return mechanics.map((mechanic) => ({
+    params: { slug: mechanic.id },
+    props: { mechanic },
+  }));
+}
+
+const { mechanic } = Astro.props;
+const { Content } = await render(mechanic);
+---
+
+<MechanicLayout mechanic={mechanic}>
+  <Content />
+</MechanicLayout>

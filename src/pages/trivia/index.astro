@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TriviaCard from '../../components/TriviaCard.astro';
+
+const trivia = (await getCollection('trivia')).sort((a, b) => {
+  if (a.data.category !== b.data.category) {
+    return a.data.category.localeCompare(b.data.category);
+  }
+  return a.data.title.localeCompare(b.data.title);
+});
+---
+
+<BaseLayout title="Curiosidades" description="Datos curiosos, easter eggs y anécdotas de la historia de Killer Instinct.">
+  <section class="section-header">
+    <p class="section-header__eyebrow">Detrás de escena</p>
+    <h1>Curiosidades</h1>
+    <p class="section-header__subtitle">
+      Anécdotas de desarrollo, easter eggs, glitches y momentos de la
+      escena competitiva de Killer Instinct.
+    </p>
+  </section>
+
+  {
+    trivia.length > 0 ? (
+      <div class="trivia-grid">
+        {trivia.map((entry) => (
+          <TriviaCard trivia={entry} />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">Todavía no hay curiosidades cargadas.</p>
+    )
+  }
+</BaseLayout>
