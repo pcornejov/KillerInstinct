@@ -28,7 +28,7 @@ const appearanceGames = await Promise.all(
           image ? (
             <img src={image.url} alt={name} />
           ) : (
-            <span class="character-detail__portrait-placeholder">{name.slice(0, 2).toUpperCase()}</span>
+            <span class="character-detail__portrait-placeholder"><span>{name.slice(0, 2).toUpperCase()}</span></span>
           )
         }
       </div>

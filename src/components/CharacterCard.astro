@@ -17,7 +17,7 @@ const gameCount = appearances.length;
       image ? (
         <img src={image.url} alt={name} loading="lazy" />
       ) : (
-        <span class="character-card__portrait-placeholder">{name.slice(0, 2).toUpperCase()}</span>
+        <span class="character-card__portrait-placeholder"><span>{name.slice(0, 2).toUpperCase()}</span></span>
       )
     }
   </div>
