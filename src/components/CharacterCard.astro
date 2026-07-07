@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { withBase } from '../utils/url';
+
+interface Props {
+  character: CollectionEntry<'characters'>;
+}
+
+const { character } = Astro.props;
+const { name, species, fightingStyle, image, appearances } = character.data;
+const gameCount = appearances.length;
+---
+
+<a class="character-card" href={withBase(`/characters/${character.id}/`)}>
+  <div class="character-card__portrait">
+    {
+      image ? (
+        <img src={image.url} alt={name} loading="lazy" />
+      ) : (
+        <span class="character-card__portrait-placeholder">{name.slice(0, 2).toUpperCase()}</span>
+      )
+    }
+  </div>
+  <div class="character-card__body">
+    <h3 class="character-card__name">{name}</h3>
+    {fightingStyle && <p class="character-card__style">{fightingStyle}</p>}
+    {species && <p class="character-card__species">{species}</p>}
+    <p class="character-card__games">
+      {gameCount} {gameCount === 1 ? 'juego' : 'juegos'}
+    </p>
+  </div>
+</a>

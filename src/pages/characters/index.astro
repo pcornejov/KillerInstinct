@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CharacterCard from '../../components/CharacterCard.astro';
+
+const characters = (await getCollection('characters')).sort((a, b) => a.data.name.localeCompare(b.data.name));
+---
+
+<BaseLayout title="Personajes" description="Roster completo de personajes de Killer Instinct a través de todos los juegos.">
+  <section class="section-header">
+    <p class="section-header__eyebrow">El elenco completo</p>
+    <h1>Personajes</h1>
+    <p class="section-header__subtitle">
+      Guerreros, monstruos y máquinas que pelearon a través de toda la saga
+      Killer Instinct.
+    </p>
+  </section>
+
+  {
+    characters.length > 0 ? (
+      <div class="character-grid">
+        {characters.map((character) => (
+          <CharacterCard character={character} />
+        ))}
+      </div>
+    ) : (
+      <p class="empty-state">Todavía no hay personajes cargados.</p>
+    )
+  }
+</BaseLayout>

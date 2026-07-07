@@ -1,0 +1,102 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { withBase } from '../utils/url';
+
+interface Props {
+  character: CollectionEntry<'characters'>;
+}
+
+const { character } = Astro.props;
+const { name, aliases, species, fightingStyle, homeStage, signatureMove, appearances, wikipediaUrl, image } =
+  character.data;
+
+const appearanceGames = await Promise.all(
+  appearances.map(async (appearance) => ({
+    ...appearance,
+    game: await getEntry(appearance.game),
+  })),
+);
+---
+
+<BaseLayout title={name} description={`${name} — ${fightingStyle ?? 'personaje'} de Killer Instinct.`}>
+  <article class="character-detail">
+    <header class="character-detail__header">
+      <div class="character-detail__portrait">
+        {
+          image ? (
+            <img src={image.url} alt={name} />
+          ) : (
+            <span class="character-detail__portrait-placeholder">{name.slice(0, 2).toUpperCase()}</span>
+          )
+        }
+      </div>
+      <div class="character-detail__intro">
+        <h1>{name}</h1>
+        {aliases && aliases.length > 0 && <p class="character-detail__aliases">"{aliases.join('", "')}"</p>}
+        <dl class="character-detail__facts">
+          {
+            species && (
+              <div>
+                <dt>Especie</dt>
+                <dd>{species}</dd>
+              </div>
+            )
+          }
+          {
+            fightingStyle && (
+              <div>
+                <dt>Estilo de combate</dt>
+                <dd>{fightingStyle}</dd>
+              </div>
+            )
+          }
+          {
+            homeStage && (
+              <div>
+                <dt>Escenario</dt>
+                <dd>{homeStage}</dd>
+              </div>
+            )
+          }
+          {
+            signatureMove && (
+              <div>
+                <dt>Movida icónica</dt>
+                <dd>{signatureMove}</dd>
+              </div>
+            )
+          }
+        </dl>
+        <div class="character-detail__appearances">
+          <h2>Apariciones</h2>
+          <ul>
+            {
+              appearanceGames.map(({ game, isBoss, isDlc, season, notes }) => (
+                <li>
+                  <a href={withBase(`/games/${game.id}/`)}>{game.data.title}</a>
+                  {isBoss && <span class="tag tag--boss">Jefe</span>}
+                  {isDlc && <span class="tag tag--dlc">DLC</span>}
+                  {season && <span class="tag">Temporada {season}</span>}
+                  {notes && <span class="character-detail__note"> — {notes}</span>}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        {
+          wikipediaUrl && (
+            <a class="character-detail__source" href={wikipediaUrl} target="_blank" rel="noopener noreferrer">
+              Ver en Wikipedia ↗
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="character-detail__content">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
