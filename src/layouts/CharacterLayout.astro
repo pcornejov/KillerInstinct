@@ -18,6 +18,8 @@ const appearanceGames = await Promise.all(
     game: await getEntry(appearance.game),
   })),
 );
+
+const initials = name.replace(/[^a-zA-Z]/g, '').slice(0, 2).toUpperCase();
 ---
 
 <BaseLayout title={name} description={`${name} — ${fightingStyle ?? 'personaje'} de Killer Instinct.`}>
@@ -28,7 +30,7 @@ const appearanceGames = await Promise.all(
           image ? (
             <img src={image.url} alt={name} />
           ) : (
-            <span class="character-detail__portrait-placeholder"><span>{name.slice(0, 2).toUpperCase()}</span></span>
+            <span class="character-detail__portrait-placeholder"><span>{initials}</span></span>
           )
         }
       </div>

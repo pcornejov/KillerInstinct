@@ -9,6 +9,7 @@ interface Props {
 const { character } = Astro.props;
 const { name, species, fightingStyle, image, appearances } = character.data;
 const gameCount = appearances.length;
+const initials = name.replace(/[^a-zA-Z]/g, '').slice(0, 2).toUpperCase();
 ---
 
 <a class="character-card" href={withBase(`/characters/${character.id}/`)}>
@@ -17,7 +18,7 @@ const gameCount = appearances.length;
       image ? (
         <img src={image.url} alt={name} loading="lazy" />
       ) : (
-        <span class="character-card__portrait-placeholder"><span>{name.slice(0, 2).toUpperCase()}</span></span>
+        <span class="character-card__portrait-placeholder"><span>{initials}</span></span>
       )
     }
   </div>
