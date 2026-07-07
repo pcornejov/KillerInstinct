@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { getEntry } from 'astro:content';
+import YouTubeFacade from './YouTubeFacade.astro';
+import { withBase } from '../utils/url';
+
+interface Props {
+  video: CollectionEntry<'videos'>;
+}
+
+const { video } = Astro.props;
+const { youtubeId, kind, character, game, title, channelTitle, thumbnailUrl } = video.data;
+
+const kindLabels: Record<string, string> = {
+  'ultra-combo': 'Ultra Combo',
+  'no-mercy': 'No Mercy',
+  'combo-showcase': 'Combo',
+  trailer: 'Tráiler',
+  interview: 'Entrevista',
+  other: 'Otro',
+};
+
+const linkedCharacter = character ? await getEntry(character) : undefined;
+const linkedGame = game ? await getEntry(game) : undefined;
+---
+
+<article class="video-card" data-kind={kind}>
+  <YouTubeFacade videoId={youtubeId} title={title} thumbnailUrl={thumbnailUrl} />
+  <div class="video-card__body">
+    <div class="video-card__tags">
+      <span class={`video-card__kind video-card__kind--${kind}`}>{kindLabels[kind] ?? kind}</span>
+      {linkedCharacter && (
+        <a class="video-card__tag" href={withBase(`/characters/${linkedCharacter.id}/`)}>{linkedCharacter.data.name}</a>
+      )}
+      {linkedGame && (
+        <a class="video-card__tag" href={withBase(`/games/${linkedGame.id}/`)}>{linkedGame.data.title}</a>
+      )}
+    </div>
+    <p class="video-card__channel">{channelTitle}</p>
+  </div>
+</article>

@@ -1,0 +1,74 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VideoCard from '../../components/VideoCard.astro';
+
+const allVideos = await getCollection('videos');
+const videos = allVideos.filter((video) => video.data.oEmbedStatus === 'valid');
+
+const kindLabels: Record<string, string> = {
+  'ultra-combo': 'Ultra Combo',
+  'no-mercy': 'No Mercy',
+  'combo-showcase': 'Combo',
+  trailer: 'Tráiler',
+  interview: 'Entrevista',
+  other: 'Otro',
+};
+
+const kindOrder = ['ultra-combo', 'no-mercy', 'combo-showcase', 'trailer', 'interview', 'other'];
+const availableKinds = kindOrder.filter((kind) => videos.some((video) => video.data.kind === kind));
+---
+
+<BaseLayout title="Videos" description="Ultra combos, No Mercy, trailers y más momentos de Killer Instinct en video.">
+  <section class="section-header">
+    <p class="section-header__eyebrow">Galería audiovisual</p>
+    <h1>Videos</h1>
+    <p class="section-header__subtitle">
+      Ultra combos, No Mercy, tráilers y entrevistas de toda la saga Killer
+      Instinct, verificados y listos para reproducir.
+    </p>
+  </section>
+
+  {
+    videos.length > 0 ? (
+      <>
+        <div class="video-filters" role="group" aria-label="Filtrar videos por tipo">
+          <button type="button" class="video-filters__button is-active" data-filter="all">
+            Todos
+          </button>
+          {availableKinds.map((kind) => (
+            <button type="button" class="video-filters__button" data-filter={kind}>
+              {kindLabels[kind] ?? kind}
+            </button>
+          ))}
+        </div>
+        <div class="video-grid">
+          {videos.map((video) => (
+            <VideoCard video={video} />
+          ))}
+        </div>
+      </>
+    ) : (
+      <p class="empty-state">Todavía no hay videos cargados.</p>
+    )
+  }
+</BaseLayout>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('.video-filters__button');
+  const cards = document.querySelectorAll<HTMLElement>('.video-card');
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.filter ?? 'all';
+
+      buttons.forEach((btn) => btn.classList.remove('is-active'));
+      button.classList.add('is-active');
+
+      cards.forEach((card) => {
+        const matches = filter === 'all' || card.dataset.kind === filter;
+        card.hidden = !matches;
+      });
+    });
+  });
+</script>
