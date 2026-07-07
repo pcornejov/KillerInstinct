@@ -21,7 +21,10 @@ const eraLabels: Record<string, string> = {
   <div class="game-card__cover">
     {
       coverImage ? (
-        <img src={coverImage.url} alt={title} loading="lazy" />
+        <>
+          <img src={coverImage.url} alt={title} loading="lazy" />
+          <span class="game-card__cover-credit">{coverImage.attribution}</span>
+        </>
       ) : (
         <span class="game-card__cover-placeholder"><span>{shortName}</span></span>
       )

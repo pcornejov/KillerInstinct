@@ -10,6 +10,11 @@ summary: "La versión actualizada de Killer Instinct 2 para Nintendo 64, con mod
 wikipediaUrl: "https://en.wikipedia.org/wiki/Killer_Instinct_Gold"
 wikidataId: "Q13743368"
 order: 3
+coverImage:
+  url: "https://media.rawg.io/media/screenshots/cda/cda482c7c284352a4b08acab03173671.jpg"
+  attribution: "Imagen vía RAWG.io"
+  license: "Cortesía de RAWG.io (API pública de videojuegos)"
+  sourceUrl: "https://rawg.io/games/killer-instinct-gold"
 ---
 
 Cuando Nintendo 64 finalmente llegó al mercado en 1996, Rare adaptó Killer Instinct 2 a la nueva consola bajo el nombre Killer Instinct Gold, lanzado en noviembre de ese mismo año. No se trató de un simple port: el equipo aprovechó la ocasión para añadir contenido pensado específicamente para el público doméstico, como un modo de práctica que permitía ensayar combos con calma y un modo torneo con rotación de equipos, funciones que la versión arcade original no ofrecía.

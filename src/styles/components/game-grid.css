@@ -45,6 +45,18 @@
   object-fit: cover;
 }
 
+.game-card__cover-credit {
+  position: absolute;
+  right: var(--space-2xs);
+  bottom: var(--space-2xs);
+  padding: 0.15em 0.6em;
+  background: rgba(10, 10, 15, 0.72);
+  border-radius: 999px;
+  color: var(--color-text-dim);
+  font-size: 0.65rem;
+  letter-spacing: 0.02em;
+}
+
 .game-card__cover-placeholder {
   position: relative;
   display: flex;
